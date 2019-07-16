@@ -1,7 +1,7 @@
 import { Product }  from "./product";
 
 export const PRODUCTS : Product[] = [
-
+    { id: 0, companyName: 'Mock Company', year: 5, rate: 3},
     { id: 1, companyName: 'FHA Convnetional', year: 30, rate: 4.15 },
     { id: 2, companyName: 'WA Convnetional', year: 15, rate: 3.25 },
     { id: 3, companyName: 'FHA Variable Arm', year: 30, rate: 3.99 },

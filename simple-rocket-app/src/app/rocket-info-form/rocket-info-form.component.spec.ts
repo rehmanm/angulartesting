@@ -26,4 +26,27 @@ describe('RocketInfoFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('form should be invalid', async(
+    () => {
+      component.rocketInfoForm.controls['firstName'].setValue('');
+      component.rocketInfoForm.controls['lastName'].setValue('');
+      component.rocketInfoForm.controls['creditScore'].setValue('');
+      component.rocketInfoForm.controls['annualIncome'].setValue(''); 
+      expect(component.rocketInfoForm.valid).toBeFalsy();     
+
+    }
+  ));
+  it('form should be valid', async(
+    () => {
+      component.rocketInfoForm.controls['firstName'].setValue('First Name');
+      component.rocketInfoForm.controls['lastName'].setValue('Last Name');
+      component.rocketInfoForm.controls['creditScore'].setValue('99');
+      component.rocketInfoForm.controls['annualIncome'].setValue('100'); 
+      expect(component.rocketInfoForm.valid).toBeTruthy();     
+
+    }
+  ));
+
 });
+

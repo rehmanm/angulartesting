@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RocketInfo } from '../rocket-info';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { RocketInfoService } from '../rocket-info.service';
 
@@ -23,11 +23,19 @@ export class RocketInfoFormComponent implements OnInit {
     this.message = "";
     this.rocketInfoForm = this.formBuilder.group(
       {
-        firstName: ['', [Validators.required, Validators.maxLength]],
-        lastName: ['', [Validators.required, Validators.maxLength]],
-        creditScore: ['', [Validators.required, Validators.max(999)]],
-        annualIncome: ['', [Validators.required, Validators.max(50000)]],
-      }
+        'firstName': new FormControl(this.rocketInfo.firstName, 
+          [Validators.required, Validators.maxLength(50)]
+        ),
+        'lastName': new FormControl(this.rocketInfo.firstName, 
+          [Validators.required, Validators.maxLength(50)]
+        ),
+        'creditScore': new FormControl(this.rocketInfo.firstName, 
+          [Validators.required, Validators.max(999)]
+        ),
+        'annualIncome': new FormControl(this.rocketInfo.firstName, 
+          [Validators.required, Validators.max(50000)]
+        ),  
+        }
     )
   }
 
@@ -39,7 +47,7 @@ export class RocketInfoFormComponent implements OnInit {
       console.log(this.f.creditScore.errors);
       return;
     }
-
+    console.log(this.rocketInfo);
     this.rocketInfo.firstName = this.f.firstName.value;
     this.rocketInfo.lastName = this.f.lastName.value;
     this.rocketInfo.creditScore = this.f.creditScore.value;
@@ -47,9 +55,13 @@ export class RocketInfoFormComponent implements OnInit {
     
     this.rocketInfoService.add(this.rocketInfo).subscribe(
       r => {
-        this.rocketInfoForm.reset();
-        this.submitted=false;
-        this.message = 'Data Inserted Successfully';
+        if(r) {
+          this.rocketInfoForm.reset();
+          this.submitted=false;
+          this.message = 'Data Inserted Successfully';
+        } else {
+          this.message = 'Unable to Insert Data';
+        }
 
       }
     )

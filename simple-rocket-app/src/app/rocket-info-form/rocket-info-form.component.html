@@ -1,0 +1,79 @@
+<div class="form">
+
+<form [formGroup]="rocketInfoForm" (ngSubmit)="OnSubmit()"> 
+
+<div class="formFields">
+    <div class="formvalidationgroup">
+        <div>
+            <label for='firstName'>First Name</label>
+        </div>
+        <input placeholder="First Name" id='firstName' formControlName="firstName"
+        minlength="4" maxlength="50" required id='firstName' name='firstName'
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+
+        />
+
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="formFields">
+        <div class="formvalidationgroup">
+        <div>
+            <label for='lastName'>Last Name</label>
+        </div>
+        <input  placeholder="Last Name" id='lastName' maxlength="50" formControlName="lastName" 
+        name='lastName' id='lastName' required
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+        />
+        
+    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+    </div>
+    </div>
+
+</div>
+    
+<div class="formFields">
+        <div class="formvalidationgroup">
+                <div>
+            <label for='creditScore'>Credit Score</label>
+        </div>
+        <input   placeholder="Credit Score" id='creditScore' max="999" 
+        type="number" formControlName="creditScore" required
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+        />
+        <div *ngIf="submitted && f.creditScore.errors" class="invalid-feedback">
+            <div *ngIf="f.creditScore.errors.required">Credit Score is required</div>
+            <div *ngIf="f.creditScore.errors.max">Can't exceed 999</div>
+        </div>
+        </div>
+</div>
+    
+
+<div class="formFields">
+        <div class="formvalidationgroup">
+        <div>
+            <label for='annualIncome'>Annual Income</label>
+        </div>
+        <input   placeholder="Annual Income" id='annualIncome' formControlName="annualIncome"
+        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+        />
+
+        <div *ngIf="submitted && f.annualIncome.errors" class="invalid-feedback">
+                <div *ngIf="f.annualIncome.errors.required">Annual Income is required</div>
+                <div *ngIf="f.annualIncome.errors.max">Can't exceed 50000</div>
+            </div>
+
+        </div>
+</div>
+
+<div *ngIf='message'>
+    {{ message }}
+</div>
+<button>Save</button>
+</form>
+</div>

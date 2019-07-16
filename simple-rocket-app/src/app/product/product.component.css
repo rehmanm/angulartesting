@@ -1,0 +1,11 @@
+.box {
+
+    display: block;
+    height: 200px;
+    width: 300px;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+}
+
